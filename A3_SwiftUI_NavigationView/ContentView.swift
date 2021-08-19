@@ -22,6 +22,7 @@ struct FirstView: View {
             VStack {
                 NavigationLink("２番目へ", destination: SecondView(through: false))
                     .padding()
+                // A１：３番目へ
                 NavigationLink("３番目へ", destination: SecondView(through: true))
                     .padding()
             }
@@ -40,7 +41,7 @@ struct SecondView: View {
     
     var body: some View {
         VStack {
-            // thirdのONで、３番目の画面に自動に移動
+            // A２:thirdのONで、３番目の画面に自動に移動
             NavigationLink("３番目へ移動", destination: ThirdView(), isActive: $third)
                 .padding()
             Button(action: {
@@ -53,7 +54,7 @@ struct SecondView: View {
         .navigationTitle("２番目")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
-            // 通過の場合、タイマーで１秒後に３番目に移動
+            // A３:通過の場合、タイマーで１秒後に３番目に移動
             if through {
                 through = false
                 _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false){_ in
